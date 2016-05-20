@@ -1,14 +1,26 @@
 .main-container{
-  border: 1px solid #ddd;
+  border-bottom: : 1px solid #ddd;
+  width: 80%;
+  margin: auto;
 }
-
+.search-box{
+  position: relative;
+  display: inline-block;
+}
 .search-input{
-  margin: 3%;
+  width: 67%;
+  float: left;
+
 }
 .search-button{
-
+  float: left;
 }
 
 .header{
   border-bottom: 1px solid #ddd;
+  text-align: center;
+  padding: 8%;
+}
+h1{
+  padding-bottom: .8em;
 }
