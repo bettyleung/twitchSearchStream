@@ -1,3 +1,4 @@
+/*title and search box*/
 .main-container{
   border-bottom: : 1px solid #ddd;
   width: 80%;
@@ -10,6 +11,7 @@
 .search-input{
   width: 67%;
   float: left;
+  font-size: 100%;
 
 }
 .search-button{
@@ -21,6 +23,35 @@
   text-align: center;
   padding: 8%;
 }
+
 h1{
   padding-bottom: .8em;
+}
+/*content*/
+.container .results-info{
+  padding-top: 1%;
+  font-weight: 900;
+}
+.right-align{
+  text-align: right;
+}
+div .list-result {
+  margin-left: 1%;
+}
+
+.thumbnail, .display-name{
+  float: left;
+}
+
+.one-result{
+  margin:auto;
+  padding: 3% 0%;
+  border-bottom: 1px solid #ddd;
+  overflow: auto;
+}
+
+
+.decrease-border button{
+    padding: 0px;
+    border: 1px solid #fff;
 }
