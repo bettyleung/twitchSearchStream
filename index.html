@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Twitch Search Stream</title>
     <meta name="author" content="bettyleung">
     <meta name="description" content="twitch stream search">
@@ -19,33 +19,29 @@
         <div class="search-box">
           <h1>Twitch.tv Search Stream</h1>
           <input id="myQuery" class="search-input" type="text" placeholder="Search Query..." onkeypress="checkEnter(event)">
-          <button id="submitQuery" class="search-button" onclick="submit()">search query</button>
+          <button class="search-button-big" onclick="submit()">search query</button>
+          <button class="search-button-sm" onclick="submit()"><i class="fa fa-search"></i></button>
         </div>
       </div>
       <div class="container">
-        <div id="resultsInfo" class="results-info">
-          <div class="row">
-            <div class="two columns right-align">List results:</div>
-            <div id="listResult" class="one column list-result">0</div>
-              <div class="nine columns right-align decrease-border">
-                <button onclick="prevButton()"> prev
-                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                </button>
-                0/10
-                <button onclick="nextButton()">
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                next
-                </button>
-              </div>
-          </div>
+        <div class="row results-info">
+          <span class="align-list-results">
+            List results: <span id="resultInfoNumber" class="result-info-number">0</span>
+          </span>
+          <span class="align-nav decrease-border">
+            <button onclick="prevButton()">
+              prev <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+            </button>
+            0/10
+            <button onclick="nextButton()">
+              <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>next
+            </button>
+          </span>
+          <div style="clear: both;"></div>
         </div>
-
         <div id="results" class="result-container">
         </div>
       </div>
-
-
-      </div>
-
+    </div>
   </body>
 </html>

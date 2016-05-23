@@ -30,6 +30,7 @@ function submit(){ //use JSONP here
   var myScript = document.createElement("script");
   var url = "https://api.twitch.tv/kraken/search/streams?limit=10&offset="
             + offsetNum + "&q=" + inputQuery + "&callback=handleData";
+
   myScript.type= "application/javascript";
   myScript.src = url;
   myScript.id = "jsonpScript"
@@ -48,7 +49,7 @@ function handleData(data) {
   if(resultsDiv.hasChildNodes()){
     resultsDiv.innerHTML = '';
   }
-  var resultNumber = document.getElementById('listResult');
+  var resultNumber = document.getElementById('resultInfoNumber');
   resultNumber.innerHTML = data["_total"];
   totalResults = data["_total"];
 
@@ -65,7 +66,7 @@ function handleData(data) {
     imgContainer.appendChild(pic);
     //create text
     var textContainer = document.createElement('div');
-    textContainer.setAttribute("class", "seven columns");
+    textContainer.setAttribute("class", "seven columns result-text");
     var displayName = document.createElement('h4');
     displayName.innerHTML +=  data["streams"][i]["channel"]["display_name"];
     var stats = document.createElement('p');

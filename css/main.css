@@ -1,8 +1,15 @@
 /*title and search box*/
 .main-container{
-  border-bottom: : 1px solid #ddd;
+  border-bottom: : 1px solid #aaa;
   width: 80%;
   margin: auto;
+}
+/*mobile***********************/
+.header{
+  border-bottom: 1px solid #aaa;
+  text-align: center;
+  padding: 10% 0% 5% 0%;
+  overflow: auto;
 }
 .search-box{
   position: relative;
@@ -10,48 +17,99 @@
 }
 .search-input{
   width: 67%;
-  float: left;
   font-size: 100%;
-
-}
-.search-button{
-  float: left;
-}
-
-.header{
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-  padding: 8%;
+  margin: auto;
+  padding-right: 0px;
+  white-space:nowrap;
 }
 
-h1{
-  padding-bottom: .8em;
+.search-button-big{
+  display: none;
 }
-/*content*/
-.container .results-info{
-  padding-top: 1%;
-  font-weight: 900;
+.search-button-sm{
+  display: inline;
 }
-.right-align{
-  text-align: right;
+
+div.container{
+  padding: 0px;
 }
-div .list-result {
+
+
+/* meta nav stuff*/
+.result-info-number {
   margin-left: 1%;
+  white-space:nowrap;
 }
-
-.thumbnail, .display-name{
+.result-info{
+  font-size: .8em;
+  text-align: right;
+  white-space:nowrap;
+}
+.decrease-border button{
+  padding: 0px;
+  border: 1px solid #fff;
+}
+.results-info{
+  font-size: .7em;
+}
+.align-list-results{
+  line-height: 40px;
   float: left;
 }
+.align-nav{
+  float: right;
+}
+@media only screen and (min-width: 375px) {
+  .results-info{
+    font-size: 1em;
+  }
+}
 
+/*desktop and tablet*/
+@media only screen and (min-width: 770px) {
+
+  .header{
+    padding: 8%;
+  }
+  h1{
+    padding-bottom: .8em;
+  }
+  .search-box{
+    position: relative;
+    display: inline-block;
+  }
+
+  .search-input{
+    width: 68%;
+    float: left;
+    font-size: 100%;
+  }
+  .search-button-big{
+    float: left;
+    display:inline;
+  }
+  .search-button-sm{
+    display:none;
+  }
+
+  /*meta nav stuff*/
+  div .list-result {
+    margin-left: 1%;
+    white-space:nowrap;
+  }
+
+}
+
+
+
+/*content******************/
+
+img{
+  max-height:100%; max-width:100%;
+}
 .one-result{
   margin:auto;
-  padding: 3% 0%;
-  border-bottom: 1px solid #ddd;
+  padding: 5% 0%;
+  border-bottom: 1px solid #aaa;
   overflow: auto;
-}
-
-
-.decrease-border button{
-    padding: 0px;
-    border: 1px solid #fff;
 }
