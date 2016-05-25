@@ -1,19 +1,36 @@
-/*title and search box*/
+/*
+* Twitch Search Stream
+* www.bettyleung.github.io/twitchSearchStream
+* 5/25/2016
+*/
+
+/* Table of Contents
+==================================================
+	#title and search box
+	#search area: mobile first
+	#seach area: desktop and tablet
+	#search result: meta details
+	#reseach result: image and text description */
+
+
+/*title and search box*********************************************************/
 .main-container{
   width: 80%;
   margin: auto;
 }
-/* search area: mobile first**********************/
+/* search area: mobile first**************************************************/
 .header{
   border-bottom: 1px solid #aaa;
   text-align: center;
   padding: 10% 0% 5% 0%;
   overflow: auto;
 }
+
 .search-container{
   position: relative;
   display: inline-block;
 }
+
 .search-input{
   width: 67%;
   font-size: 100%;
@@ -21,14 +38,16 @@
   padding-right: 0px;
   white-space:nowrap;
 }
+
 .search-button-big{
   display: none;
 }
+
 .search-button-sm{
   display: inline;
 }
 
-/*seach area: desktop and tablet******************/
+/*search area: desktop and tablet******************/
 @media only screen and (min-width: 768px) {
   h1{
     padding-bottom: .8em;
@@ -54,21 +73,15 @@
   }
 }
 
-/* search result: meta details*******************/
+/* search result: meta details***************************************************/
 div.container{ /*override skeleton.css*/
   padding: 0px;
   width: 100%;
-
 }
 
-.result-info-number {
-  margin-left: 1%;
-
-}
 .results-info-container{
   font-size: .8em;
   text-align: right;
-
 }
 
 @media only screen and (min-width: 375px) {
@@ -77,12 +90,16 @@ div.container{ /*override skeleton.css*/
   }
 }
 
+.results-info-number {
+  margin-left: 1%;
+}
+
 .decrease-border button{ /*make btn clear*/
   padding: 0px;
   border: 1px solid #fff;
 }
 
-.align-list-results{
+.align-list-results{ /*results info stays on one line*/
   line-height: 40px;
   float: left;
 
@@ -91,7 +108,7 @@ div.container{ /*override skeleton.css*/
   float: right;
 }
 
-/*reseach result: image and text descriptions****/
+/*reseach result: image and text descriptions*************************************/
 .one-result{
   margin:auto;
   padding: 5% 0%;
@@ -99,6 +116,7 @@ div.container{ /*override skeleton.css*/
   overflow: auto;
 }
 
+/*mobile first*/
 img{
   height: auto;
   max-width:100%;
@@ -114,6 +132,7 @@ img{
   display: none;
 }
 
+/*phablet*/
 @media screen and (min-width:550px) {
   .default-img{
     display:none;
@@ -126,7 +145,7 @@ img{
   }
 }
 
-
+/*desktop*/
 @media screen and (min-width:1024px) {
   .default-img{
     display:none;
