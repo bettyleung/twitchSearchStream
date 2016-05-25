@@ -1,17 +1,16 @@
 /*title and search box*/
 .main-container{
-  border-bottom: : 1px solid #aaa;
   width: 80%;
   margin: auto;
 }
-/*mobile***********************/
+/* search area: mobile first**********************/
 .header{
   border-bottom: 1px solid #aaa;
   text-align: center;
   padding: 10% 0% 5% 0%;
   overflow: auto;
 }
-.search-box{
+.search-container{
   position: relative;
   display: inline-block;
 }
@@ -22,7 +21,6 @@
   padding-right: 0px;
   white-space:nowrap;
 }
-
 .search-button-big{
   display: none;
 }
@@ -30,55 +28,18 @@
   display: inline;
 }
 
-div.container{
-  padding: 0px;
-}
-
-
-/* meta nav stuff*/
-.result-info-number {
-  margin-left: 1%;
-  white-space:nowrap;
-}
-.result-info{
-  font-size: .8em;
-  text-align: right;
-  white-space:nowrap;
-}
-.decrease-border button{
-  padding: 0px;
-  border: 1px solid #fff;
-}
-.results-info{
-  font-size: .7em;
-}
-.align-list-results{
-  line-height: 40px;
-  float: left;
-}
-.align-nav{
-  float: right;
-}
-@media only screen and (min-width: 375px) {
-  .results-info{
-    font-size: 1em;
-  }
-}
-
-/*desktop and tablet*/
-@media only screen and (min-width: 770px) {
-
-  .header{
-    padding: 8%;
-  }
+/*seach area: desktop and tablet******************/
+@media only screen and (min-width: 768px) {
   h1{
     padding-bottom: .8em;
+  }
+  .header{
+    padding: 8%;
   }
   .search-box{
     position: relative;
     display: inline-block;
   }
-
   .search-input{
     width: 68%;
     float: left;
@@ -91,25 +52,89 @@ div.container{
   .search-button-sm{
     display:none;
   }
+}
 
-  /*meta nav stuff*/
-  div .list-result {
-    margin-left: 1%;
-    white-space:nowrap;
+/* search result: meta details*******************/
+div.container{ /*override skeleton.css*/
+  padding: 0px;
+  width: 100%;
+
+}
+
+.result-info-number {
+  margin-left: 1%;
+
+}
+.results-info-container{
+  font-size: .8em;
+  text-align: right;
+
+}
+
+@media only screen and (min-width: 375px) {
+  .results-info-container{
+    font-size: 1em;
   }
-
 }
 
-
-
-/*content******************/
-
-img{
-  max-height:100%; max-width:100%;
+.decrease-border button{ /*make btn clear*/
+  padding: 0px;
+  border: 1px solid #fff;
 }
+
+.align-list-results{
+  line-height: 40px;
+  float: left;
+
+}
+.align-nav{
+  float: right;
+}
+
+/*reseach result: image and text descriptions****/
 .one-result{
   margin:auto;
   padding: 5% 0%;
   border-bottom: 1px solid #aaa;
   overflow: auto;
+}
+
+img{
+  height: auto;
+  max-width:100%;
+}
+.default-img{
+  display:inline-block;
+}
+
+.tablet-img{
+  display: none;
+}
+.desktop-img{
+  display: none;
+}
+
+@media screen and (min-width:550px) {
+  .default-img{
+    display:none;
+  }
+  .tablet-img{
+    display: inline-block;
+  }
+  .desktop-img{
+    display: none;
+  }
+}
+
+
+@media screen and (min-width:1024px) {
+  .default-img{
+    display:none;
+  }
+  .tablet-img{
+    display: none;
+  }
+  .desktop-img{
+    display: inline-block;
+  }
 }

@@ -16,30 +16,26 @@
   <body onload="initialize();">
     <div class="main-container ">
       <div class="header">
-        <div class="search-box">
+        <div class="search-container">
           <h1>Twitch.tv Search Stream</h1>
-          <input id="myQuery" class="search-input" type="text" placeholder="Search Query..." onkeypress="checkEnter(event)">
-          <button class="search-button-big" onclick="submit()">search query</button>
-          <button class="search-button-sm" onclick="submit()"><i class="fa fa-search"></i></button>
+          <input id="myQuery" class="search-input" type="text" placeholder="Search Query..." onkeypress="checkEnter(event)" autofocus>
+          <button id="bgBtn" class="search-button-big" onclick="getTwitchData(event)">search query</button>
+          <button id="smBtn" class="search-button-sm" onclick="getTwitchData(event)"><i class="fa fa-search"></i></button>
         </div>
       </div>
       <div class="container">
-        <div class="row results-info">
+        <div class="row results-info-container">
           <span class="align-list-results">
             List results: <span id="resultInfoNumber" class="result-info-number">0</span>
           </span>
           <span class="align-nav decrease-border">
-            <button onclick="prevButton()">
-              prev <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-            </button>
-            0/10
-            <button onclick="nextButton()">
-              <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>next
-            </button>
+            <button id="prevPage" onclick="getPrevPage(event)"> prev <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> </button>
+            <span id="curPage">1</span>/<span id="totalPage">1</span>
+            <button id="nextPage" onclick="getNextPage(event)"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>next</button>
           </span>
           <div style="clear: both;"></div>
         </div>
-        <div id="results" class="result-container">
+        <div id="results">
         </div>
       </div>
     </div>
