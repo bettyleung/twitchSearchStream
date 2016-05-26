@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <!--
 * Twitch Search Stream
 * www.bettyleung.github.io/twitchSearchStream
@@ -63,5 +64,51 @@
       </div>
     </div>
     <!-- End Document ====================================================== -->
+=======
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Twitch Search Stream</title>
+    <meta name="author" content="bettyleung">
+    <meta name="description" content="twitch stream search">
+    <meta name="keywords" content="twitch,stream">
+    <link rel="stylesheet" href="./css/main.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="./js/loadContent.js"></script>
+  </head>
+  <body onload="initialize();">
+    <div class="main-container ">
+      <div class="header">
+        <div class="search-box">
+          <h1>Twitch.tv Search Stream</h1>
+          <input id="myQuery" class="search-input" type="text" placeholder="Search Query..." onkeypress="checkEnter(event)">
+          <button class="search-button-big" onclick="submit()">search query</button>
+          <button class="search-button-sm" onclick="submit()"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row results-info">
+          <span class="align-list-results">
+            List results: <span id="resultInfoNumber" class="result-info-number">0</span>
+          </span>
+          <span class="align-nav decrease-border">
+            <button onclick="prevButton()">
+              prev <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+            </button>
+            0/10
+            <button onclick="nextButton()">
+              <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>next
+            </button>
+          </span>
+          <div style="clear: both;"></div>
+        </div>
+        <div id="results" class="result-container">
+        </div>
+      </div>
+    </div>
+>>>>>>> 8874c96bd4b90a8ca266e98cf8f16cb2b4f94e81
   </body>
 </html>
