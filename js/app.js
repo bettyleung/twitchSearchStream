@@ -4,61 +4,70 @@
 * 5/25/2016
 */
 
+//TODO: fix up stream description
+//TODO: test in safari, firefox, and ie???
+//TODO: code cleanup
 (function () {
    'use strict';
 }());
 
-//Global Vars ------------------------------------------------------------------
-var offsetNum;
-var totalResults;
-var curPageNum;
 
-
-//Initial Load -----------------------------------------------------------------
-function initialize(){
-  document.getElementById("myQuery").focus();
-}
-
- //JSON ------------------------------------------------------------------------
-function getTwitchData(ev){ //use JSONP here
+//JSON ------------------------------------------------------------------------
+function getTwitchData(url){ //use JSONP here
   var inputQuery = encodeURIComponent(document.getElementById("myQuery").value),
       myScript = document.createElement("script"),
-      myCallback = "&callback=clearOldResults",
-      url;
+      myCallback = "&callback=handleMetaDataCont";
 
-  if(ev.currentTarget.id ==="bgBtn" || ev.currentTarget.id ==="smBtn" ||ev.currentTarget.id === "myQuery"){
-    myCallback = "&callback=handleMetaData";
+  if(typeof url === 'undefined'){ //new query
+    myCallback = "&callback=handleMetaDataNew";
   }
 
-  url = "https://api.twitch.tv/kraken/search/streams?limit=10&offset=" + offsetNum + "&q=" + inputQuery + myCallback;
+  url = url || "https://api.twitch.tv/kraken/search/streams?q=" + inputQuery + myCallback;
 
   myScript.type= "application/javascript";
   myScript.src = url;
   myScript.id = "jsonpScript";
-  //console.log(myScript);
+  console.log(url);
   document.getElementsByTagName('head')[0].appendChild(myScript);
 }
 
 
 
+
+
 //Rendering --------------------------------------------------------------------
-function handleMetaData(data){
-  offsetNum = 10;
-  totalResults = 0;
-  curPageNum = 1;
+function handleMetaDataNew(data){
+  var setNextBtn = data._links.next || ""; //set next button, but not previous
+  document.getElementById('nextPage').onclick = callGetTwitchData(setNextBtn);
+
   document.getElementById('resultInfoNumber').innerHTML = data._total;
-  totalResults = data._total;
-  document.getElementById('curPage').innerHTML = 1;
-  var totalPage = document.getElementById('totalPage');
-  totalPage.innerHTML = (totalResults/10 > 0 ? (parseInt(totalResults/10, 10)+1) : 1);
-  curPage.innerHTML = 1;
+  document.getElementById('curPage').innerHTML = 0;
+  document.getElementById('totalPage').innerHTML = Math.floor(data._total/10);
+  clearOldResults(data);
+}
+
+function handleMetaDataCont(data){
+  var pg = data._links.self.substring(data._links.self.indexOf("offset=")+7, data._links.self.indexOf("&q"));
+  document.getElementById('curPage').innerHTML = Math.floor(pg/10);
+  var setPrevBtn = data._links.prev || "";
+  var setNextBtn = data._links.next || "";
+  if(setPrevBtn === ""){//no more prev
+    document.getElementById('prevPage').onclick = "";
+    document.getElementById('nextPage').onclick = callGetTwitchData(setNextBtn);
+  } else if(parseInt(document.getElementById('curPage').innerHTML,10) >= parseInt(document.getElementById('totalPage').innerHTML,10)){ //no more foward
+    document.getElementById('prevPage').onclick = callGetTwitchData(setPrevBtn);
+    document.getElementById('nextPage').onclick = "";
+  } else{
+    document.getElementById('prevPage').onclick = callGetTwitchData(setPrevBtn);
+    document.getElementById('nextPage').onclick = callGetTwitchData(setNextBtn);
+  }
   clearOldResults(data);
 }
 
 //remove jsonp script and clear old results
 function clearOldResults(data){
   var resultsDiv = document.getElementById('results'),
-    removeScript = document.getElementById('jsonpScript');
+      removeScript = document.getElementById('jsonpScript');
 
   removeScript.parentNode.removeChild(removeScript);  //remove the jsonp
 
@@ -72,6 +81,7 @@ function clearOldResults(data){
 
 //build the rows of result row
 function renderResults(data) {
+  var resultsDiv = document.getElementById('results');
   for(var i = 0; i < data.streams.length; i++){
     //build a result row
     var oneResult = document.createElement('div'),
@@ -85,12 +95,18 @@ function renderResults(data) {
   }
 }
 
+function callGetTwitchData(url){
+  return function(){
+    getTwitchData(url+"&callback=handleMetaDataCont");
+  };
+}
+
 //build responsive images that when clicked will take to the stream
 function buildimage(data, i){
   var imgContainer = document.createElement('div'),
       picDefault = document.createElement("img"),
       picTablet = document.createElement("img"),
-      picDesktop = document.createElement("img");
+      picDesktop = document.createElement("img"),
       imgLink= document.createElement("a");
 
   imgContainer.setAttribute("class", "six columns");
@@ -111,7 +127,7 @@ function buildimage(data, i){
 }
 
 //build display name, game name, viewers, and description
-function buildText(){
+function buildText(data, i){
   var textContainer = document.createElement('div'),
       displayName = document.createElement('h4'),
       stats = document.createElement('p'),
@@ -122,7 +138,12 @@ function buildText(){
   stats.innerHTML += "Game name: \"" + data.streams[i].game;
   stats.innerHTML += "\" | Viewers: " + data.streams[i].viewers;
   //build stream description
-  streamDescription.innerHTML += "This stream was created at: " + data.streams[i].created_at;
+
+  //formate date and time
+  var str = new Date(data.streams[i].created_at).toString();
+  var maturity = data.streams[i].channel.mature;
+
+  streamDescription.innerHTML += "This stream was created at: " + str.substring(0,str.substring(0,str.lastIndexOf(" ")).lastIndexOf(" "));
   streamDescription.innerHTML += ". The channel status is \"" + data.streams[i].channel.status;
   streamDescription.innerHTML += "\", and the maturity rating is " + data.streams[i].channel.mature+".";
 
@@ -134,63 +155,10 @@ function buildText(){
 }
 
 
-//Interactions -----------------------------------------------------------------
+
+//Interactions & Utility Functions -----------------------------------------------------------------
 //enter is pressed on input
 function checkEnter(e){
   if(e.keyCode === 13)
-    getFirstPage(e);
+    getTwitchData();
 }
-//page is first loaded
-function getFirstPage(ev){
-  getTwitchData(ev);
-}
-//next button is pressed
-function getNextPage(ev){
-  if(offsetNum < Math.floor(totalResults/10)*10){
-    curPageNum++;
-    updateOffset(10);
-    getTwitchData(ev);
-  } else if (offsetNum <= totalResults){
-    curPageNum++;
-    updateOffset(totalResults % 10);
-    getTwitchData(ev);
-  }
-}
-//previous button is pressed
-function getPrevPage(ev){
-  if(offsetNum > 10) {
-    curPageNum--;
-    updateOffset(-10);
-    getTwitchData(ev);
-
-  } else {
-    curPageNum = 1;
-    updateOffset(-updateOffset);
-  }
-}
-
-
-
-//Utility Functions ------------------------------------------------------------
-function updateOffset(num){
-  offsetNum += num;
-  document.getElementById('curPage').innerHTML = curPageNum;
-}
-
-
-// function updateData(){
-//   var inputQuery = encodeRFC5987ValueChars(document.getElementById("myQuery").value);
-//   var xhrRequest = new XMLHttpRequest();
-//   var url = "https://api.twitch.tv/kraken/search/streams?limit=10&offset="
-//             + offsetNum + "&q=" + inputQuery;
-//     console.log(url);
-//     xhrRequest.onreadystatechange = function() {
-//       if (xhrRequest.readyState == 4 && xhrRequest.status == 200) {
-//           var myData = JSON.parse(xhrRequest.responseText);
-//           renderResults(myData);
-//           totalResults = myData["_total"];
-//       }
-//   };
-//   xhrRequest.open("GET", url, true);
-//   xhrRequest.send();
-// }

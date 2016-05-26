@@ -12,7 +12,7 @@
 	#search result: meta details
 	#reseach result: image and text description */
 
-
+/*TODO: beautify results number*/
 /*title and search box*********************************************************/
 .main-container{
   width: 80%;
@@ -90,8 +90,8 @@ div.container{ /*override skeleton.css*/
   }
 }
 
-.results-info-number {
-  margin-left: 1%;
+.float-left {
+  float: left;
 }
 
 .decrease-border button{ /*make btn clear*/
@@ -101,7 +101,7 @@ div.container{ /*override skeleton.css*/
 
 .align-list-results{ /*results info stays on one line*/
   line-height: 40px;
-  float: left;
+
 
 }
 .align-nav{

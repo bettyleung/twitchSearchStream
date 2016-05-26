@@ -1,9 +1,9 @@
+<!DOCTYPE html>
 <!--
 * Twitch Search Stream
 * www.bettyleung.github.io/twitchSearchStream
 * 5/25/2016
  -->
-<!DOCTYPE html>
 <html>
   <head>
     <!-- Basic Page Needs ================================================== -->
@@ -21,16 +21,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" type="text/css">
 
     <!-- Font ============================================================== -->
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway' type='text/css'>
 
 	   <!-- Favicon ========================================================== -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type='text/css'>
 
     <!-- JS ================================================================ -->
-    <script type="text/javascript" src="./js/loadContent.js"></script>
+    <script src="./js/app.js" type="text/javascript" ></script>
   </head>
 
-  <body onload="initialize();">
+  <!-- <body onload="initialize();"> -->
+    <body>
     <div class="main-container ">
 
       <!--Title and  -->
@@ -39,20 +40,23 @@
           <h1>Twitch.tv Search Stream</h1>
           <!-- Search Bar -->
           <input id="myQuery" class="search-input" type="text" placeholder="Search Query..." onkeypress="checkEnter(event)" autofocus>
-          <button id="bgBtn" class="search-button-big" onclick="getTwitchData(event)">search query</button>
-          <button id="smBtn" class="search-button-sm" onclick="getTwitchData(event)"><i class="fa fa-search"></i></button>
+          <button id="bgBtn" class="search-button-big" onclick="getTwitchData()">search query</button>
+          <button id="smBtn" class="search-button-sm" onclick="getTwitchData()"><i class="fa fa-search"></i></button>
         </div>
       </div>
       <!-- Results meta info -->
       <div class="container">
         <div class="row results-info-container">
           <span class="align-list-results">
-            List results: <span id="resultInfoNumber" class="results-info-number">0</span>
+            <span class="float-left">List results: </span><span id="resultInfoNumber" class="float-left">0</span>
           </span>
           <span class="align-nav decrease-border">
-            <button id="prevPage" onclick="getPrevPage(event)"> prev <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> </button>
+            <!-- <button id="prevPage" onclick="getPrevPage(event)"> prev <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> </button>
             <span id="curPage">1</span>/<span id="totalPage">1</span>
-            <button id="nextPage" onclick="getNextPage(event)"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>next</button>
+            <button id="nextPage" onclick="getNextPage(event)"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>next</button> -->
+            <button id="prevPage"> prev <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> </button>
+            <span id="curPage">1</span>/<span id="totalPage">1</span>
+            <button id="nextPage"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>next</button>
           </span>
           <div style="clear: both;"></div>
         </div>
