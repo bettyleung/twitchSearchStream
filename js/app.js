@@ -155,7 +155,7 @@ function buildText(data, i){
       displayName = document.createElement('h4'),
       stats = document.createElement('p'),
       streamDescription = document.createElement('p'),
-      maturity = data.streams[i].channel.mature;;
+      maturity = data.streams[i].channel.mature;
 
   textContainer.setAttribute("class", "six columns");
   displayName.innerHTML += data.streams[i].channel.display_name;
