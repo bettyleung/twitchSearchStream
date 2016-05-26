@@ -101,9 +101,8 @@ div.container{ /*override skeleton.css*/
 
 .align-list-results{ /*results info stays on one line*/
   line-height: 40px;
-
-
 }
+
 .align-nav{
   float: right;
 }
@@ -112,10 +111,20 @@ div.container{ /*override skeleton.css*/
 .one-result{
   margin:auto;
   padding: 5% 0%;
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #bbb;
   overflow: auto;
+  text-align: center;
 }
 
+div > h4{
+  font-weight: 600;
+  letter-spacing: .1rem;
+
+}
+.results-subtitle{
+  font-weight: 600;
+  letter-spacing: .1rem;
+}
 /*mobile first*/
 img{
   height: auto;
@@ -134,6 +143,9 @@ img{
 
 /*phablet*/
 @media screen and (min-width:550px) {
+  .one-result{
+    text-align: left;
+  }
   .default-img{
     display:none;
   }
@@ -147,6 +159,9 @@ img{
 
 /*desktop*/
 @media screen and (min-width:1024px) {
+  .one-result{
+    text-align: left;
+  }
   .default-img{
     display:none;
   }
