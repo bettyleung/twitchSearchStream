@@ -39,21 +39,21 @@
         <div class="search-container">
           <h1>Twitch.tv Search Stream</h1>
           <!-- Search Bar -->
-          <input id="myQuery" class="search-input" type="text" placeholder="Search Query..." onkeypress="checkEnter(event)" autofocus>
+          <input id="myQuery" class="search-input" type="text" placeholder="Search Query..." onkeypress="checkEnter(event)" autofocus autocomplete="off">
           <button id="bgBtn" class="search-button-big" onclick="getTwitchData()">search query</button>
           <button id="smBtn" class="search-button-sm" onclick="getTwitchData()"><i class="fa fa-search"></i></button>
         </div>
       </div>
       <!-- Results meta info -->
-      <div class="container">
+      <div class="results-container">
         <div class="row results-info-container">
           <span class="align-list-results">
             <span class="float-left">List results: </span><span id="totalResultsNumber" class="float-left">0</span>
           </span>
           <span class="align-nav decrease-border">
-            <button id="prevPageButton"> prev <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> </button>
+            <button id="prevPageButton"> <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> prev</button>
             <span id="currentPageNumber">0</span>/<span id="totalPageNumber">0</span>
-            <button id="nextPageButton"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>next</button>
+            <button id="nextPageButton">next<i class="fa fa-chevron-circle-right" aria-hidden="true"></i></button>
           </span>
           <div style="clear: both;"></div>
         </div>

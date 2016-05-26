@@ -14,8 +14,10 @@
 
 /*TODO: beautify results number*/
 /*title and search box*********************************************************/
+body{
+  margin: 8%;
+}
 .main-container{
-  width: 80%;
   margin: auto;
 }
 /* search area: mobile first**************************************************/
@@ -23,6 +25,7 @@
   border-bottom: 1px solid #aaa;
   text-align: center;
   padding: 10% 0% 5% 0%;
+  margin-bottom: 1%;
   overflow: auto;
 }
 
@@ -74,7 +77,7 @@
 }
 
 /* search result: meta details***************************************************/
-div.container{ /*override skeleton.css*/
+div.results-container{ /*override skeleton.css*/
   padding: 0px;
   width: 100%;
 }
@@ -94,9 +97,9 @@ div.container{ /*override skeleton.css*/
   float: left;
 }
 
-.decrease-border button{ /*make btn clear*/
+.decrease-border button{
   padding: 0px;
-  border: 1px solid #fff;
+
 }
 
 .align-list-results{ /*results info stays on one line*/
@@ -114,6 +117,7 @@ div.container{ /*override skeleton.css*/
   border-bottom: 1px solid #bbb;
   overflow: auto;
   text-align: center;
+  display: inline-block;
 }
 
 div > h4{
